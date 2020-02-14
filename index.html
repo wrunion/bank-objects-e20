@@ -38,20 +38,28 @@
           <div class="three fields">
               <div class="field">
                 <label for="firstName">First Name</label>
-                <input type="text" id="firstName" value="Jane">
+                <input type="text" id="firstName" placeholder="First name">
               </div>
               <div class="field">
                 <label for="lastName">Last Name</label>
-                <input type="text" id="lastName" value="Smith">
+                <input type="text" id="lastName" placeholder="Last name">
               </div>
               <div class="field">
                 <label for="phoneNumber">Opening Deposit</label>
-                <input type="text" id="phoneNumber" value="555-555-2211">
+                <input type="text" id="phoneNumber" placeholder="$">
               </div>
             </div>
             <button class="ui basic pink button" type="submit">Register</button>
           </form>
         </div>
+
+        <!-- Success/Welcome Message  -->
+      <div class="ui segment" id="registration-success">
+        <h3 class="ui teal header" id="registration-header">Registration Complete!
+          <div class="sub header">Welcome to Winter's Credit Union, <span id="userIntro"></span>!</div>
+        </h3>
+          <p>Your account number is <span id="accountNumber"></span>.</p>
+      </div>        
 
        <!-- Deposit and Withdrawl Form  -->
       <div class="ui segment" id="deposit-div">
@@ -59,16 +67,16 @@
           <form id="deposit" class="ui form">
           <div class="three fields">
               <div class="field">
-                <label for="firstName">Deposit Amount</label>
-                <input type="text" id="firstName" value="Jane">
+                <label for="firstName">Account Number</label>
+                <input type="text" id="accountNumber">
               </div>
               <div class="field">
-                <label for="lastName">Withdrawal Amount</label>
-                <input type="number" id="lastName" value="Smith">
+                <label for="lastName">Deposit Amount</label>
+                <input type="number" id="depositAmount">
               </div>
               <div class="field">
-                <label for="depositDate">Deposit Date</label>
-                <input type="date" id="depositDate">
+                <label for="depositDate">Withdrawal Amount</label>
+                <input type="number" id="depositDate">
               </div>
             </div>
             <button class="ui basic blue button" type="submit">Submit</button>
