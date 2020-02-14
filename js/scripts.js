@@ -5,16 +5,17 @@
 function Bank(bankName) {
   this.bankName = bankName;
   this.customers = [];
-  this.customerIdCounter = 0;
+  this.customerIdCounter = 1;
 }
 
 //Customer constructor function and methods
 function Customer(fullName) {
   this.fullName = fullName;
   this.transactions = [];
-  this.transactionsObj = {};
   this.balance = 0;
   this.tranactionId = 0;
+  // Temporary static assignment until I can go back and make it dymanic 
+  this.id = 128;
 }
 
 
@@ -27,20 +28,42 @@ function Customer(fullName) {
 
 //OR 
 
-Customer.prototype.transaction = function(date, amount, transactionType) {
-  this.date = date;
-  this.amount = amount;
-  this.transactionType = transactionType;
+// Customer.prototype.transaction = function(date, amount, transactionType) {
+//   this.date = date;
+//   this.amount = amount;
+//   this.transactionType = transactionType;
 
-  this.tranactionId += 1;
-  this.id = this.tranactionId;
+//   this.tranactionId += 1;
+//   this.id = this.tranactionId;
 
-  this.logTransaction = function() {
-
-  }
-}
+//   this.logTransaction = function() {
+    
+//   }
+// }
 
 // Refactor this into a series of functions OR possibly a child constructor function that can still access the properties of Customer
+
+// GO BACK AND USE THIS
+// Customer.prototype.deposit = function(date, amount) {
+//   this.transactionType = "deposit";
+
+// }
+
+// Customer.prototype.assignTransactionId = function() {
+//   this.transactionId += 1;
+//   return this.tranactionId;
+// }
+
+
+// Customer.prototype.transactionId = function(type) {
+//   this.tranactionId += 1;
+//   return this.transactionId;
+
+//   // this.amount = amount; 
+//   // this.date = date;
+// }
+
+// THIS IS WORKING
 Customer.prototype.transaction = function(date, amount, transactionType) {
   // Assign properties
   this.date = date;
@@ -57,26 +80,34 @@ Customer.prototype.transaction = function(date, amount, transactionType) {
   this.transactions.push([this.id, this.transactionType, this.date, this.balance, this.balance]);
 
   // Tests ------------
-  console.log(this.balance);
-  console.log(this.id);
-  console.log(this.date);
-  console.log(this.transactionType);
-  console.log(this.transactions);
+  // console.log(this.balance);
+  // console.log(this.id);
+  // console.log(this.date);
+  // console.log(this.transactionType);
+  // console.log(this.transactions);
 }
   
-Customer.prototype.logTransaction = function() {
-  this.amount = amount; 
-  this.date = date;
+// SAVE THESE
+Customer.prototype.deposit = function(amount) {
+  this.balance += amount;
+  return this.balance;
 }
 
+Customer.prototype.withdrawal = function(amount) {
+  this.balance -= amount;
+  return this.balance;
+}
 
 // Test it out!
 let wintersBank = new Bank("Winter's Bank");
 
 let george = new Customer("Curious George");
+
 george.transaction("new date", 250, "deposit");
 //console.log(george.balance);
 
+// Create objects to use for webpage
+let currentCustomer;
 
 // UI Logic --------------------
 $(document).ready(function() {
@@ -93,15 +124,26 @@ $(document).ready(function() {
     console.log(fullName);
     console.log(openingDeposit);
 
-    let newUser = new User(firstName, lastName, balance);
-    console.log(newUser);     
+    currentCustomer = new Customer(fullName);
+    //console.log(currentCustomer);
+    currentCustomer.deposit(openingDeposit);
 
+    // Hide the registration form and show welcome message
+    //console.log(currentCustomer.balance); 
+    $("#register-div").hide();
+
+
+    $("#registration-success").show();
+      $("span#userIntro").append(firstName);
+      let registrationMessage = `Your account number is ${currentCustomer.id} and your balance is $${currentCustomer.balance}.<br> Please save this information for your records.`;
+      $("#newAccountInfo").append(registrationMessage);
+  
     event.preventDefault();
   });
 
-  // $("form#deposit").submit(function(event) {
-
-  //   event.preventDefault;
-  // });
+  $("form#deposit").submit(function(event) {
+    $("input#accountNumber").val() = currentCustomer.id;
+    event.preventDefault;
+  });
 
 });

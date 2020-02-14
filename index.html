@@ -53,11 +53,11 @@
         </div>
 
         <!-- Success/Welcome Message  -->
-      <div class="ui segment" id="registration-success">
+      <div class="ui raised segment" id="registration-success">
         <h3 class="ui teal header" id="registration-header">Registration Complete!
           <div class="sub header">Welcome to Winter's Credit Union, <span id="userIntro"></span>!</div>
         </h3>
-          <p>Your account number is <span id="accountNumber"></span>.</p>
+          <p id="newAccountInfo"></p>
       </div>        
 
        <!-- Deposit and Withdrawl Form  -->
@@ -67,7 +67,7 @@
           <div class="three fields">
               <div class="field">
                 <label for="firstName">Account Number</label>
-                <input type="text" id="accountNumber">
+                <input type="text" id="accountNumber" disabled value="#128">
               </div>
               <div class="field">
                 <label for="lastName">Deposit Amount</label>
