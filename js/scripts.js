@@ -12,34 +12,69 @@ function Bank(bankName) {
 function Customer(fullName) {
   this.fullName = fullName;
   this.transactions = [];
+  this.transactionsObj = {};
   this.balance = 0;
-  this.transactionIdCounter = 0;
+  this.tranactionId = 0;
 }
 
-Customer.prototype.deposit = function(date, amount) {
-  // Definte properties
+
+// Could I set inheritance in such a way that the Transaction constructor could use and access properties of Customer? 
+// function Transaction(date, amount, transactionType) {
+//   this.date = date;
+//   this.amount = amount;
+//   this.transactionType = transactionType;
+// }
+
+//OR 
+
+Customer.prototype.transaction = function(date, amount, transactionType) {
   this.date = date;
+  this.amount = amount;
+  this.transactionType = transactionType;
+
+  this.tranactionId += 1;
+  this.id = this.tranactionId;
+
+  this.logTransaction = function() {
+
+  }
+}
+
+// Refactor this into a series of functions OR possibly a child constructor function that can still access the properties of Customer
+Customer.prototype.transaction = function(date, amount, transactionType) {
+  // Assign properties
+  this.date = date;
+  this.amount = amount;
+  this.transactionType = transactionType;
+
+  // Increase the balance
   this.balance += amount;
   // Assign the transaction a unique ID
-  this.transactionIdCounter +=1;
-  this.id = this.transactionIdCounter;
+  this.tranactionId +=1;
+  this.id = this.tranactionId;
+
+  // Push the transaction info to the customer's transaction array
+  this.transactions.push([this.id, this.transactionType, this.date, this.balance, this.balance]);
 
   // Tests ------------
   console.log(this.balance);
   console.log(this.id);
   console.log(this.date);
-
-  // Push entire transaction to Customer object's "transactions" array
-  this.transactions.push(["deposit", amount, date, this.balance, this.id]);
+  console.log(this.transactionType);
   console.log(this.transactions);
-
 }
   
+Customer.prototype.logTransaction = function() {
+  this.amount = amount; 
+  this.date = date;
+}
+
+
 // Test it out!
 let wintersBank = new Bank("Winter's Bank");
 
 let george = new Customer("Curious George");
-george.deposit("new date", 250);
+george.transaction("new date", 250, "deposit");
 //console.log(george.balance);
 
 
