@@ -142,8 +142,17 @@ $(document).ready(function() {
   });
 
   $("form#deposit").submit(function(event) {
-    $("input#accountNumber").val() = currentCustomer.id;
-    event.preventDefault;
+    // Insert customer id into account number input
+    //$("input#accountNumber").val() = currentCustomer.id;
+
+    let deposit = $("input#deposit").val();
+    let withdrawal = $("input#withdrawal").val();
+    
+    console.log(deposit);
+    console.log(withdrawal);
+
+
+    event.preventDefault();
   });
 
 });
