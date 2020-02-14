@@ -3,7 +3,13 @@ h1 {
 }
 
 #balanceBox {
-  height: 2em;
+  height: 2.25em;
   border: .95px darkgrey solid;
   border-radius: 5px;
+}
+
+#main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
