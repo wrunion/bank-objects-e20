@@ -1,44 +1,72 @@
-// Business Logic --------------
-function Account() {
-  this.users = [];
-  this.currentId = 26142;
+// Business Logic ---------------
+
+// Bank function and methods - COME BACK TO THIS
+
+function Bank(bankName) {
+  this.bankName = bankName;
+  this.customers = [];
+  this.customerIdCounter = 0;
 }
 
-Account.prototype.addUser = function(user) {
-  this.id += 242;
-  this.user.id = this.id;
-  Account.users.push(user);
+//Customer constructor function and methods
+function Customer(fullName) {
+  this.fullName = fullName;
+  this.transactions = [];
+  this.balance = 0;
+  this.transactionIdCounter = 0;
 }
 
-function User(firstName, lastName, balance) {
-  this.firstName = firstName;
-  this.lastName = lastName;
-  this.balance = balance;
+Customer.prototype.deposit = function(date, amount) {
+  // Definte properties
+  this.date = date;
+  this.balance += amount;
+  // Assign the transaction a unique ID
+  this.transactionIdCounter +=1;
+  this.id = this.transactionIdCounter;
+
+  // Tests ------------
+  console.log(this.balance);
+  console.log(this.id);
+  console.log(this.date);
+
+  // Push entire transaction to Customer object's "transactions" array
+  this.transactions.push(["deposit", amount, date, this.balance, this.id]);
+  console.log(this.transactions);
+
 }
+  
+// Test it out!
+let wintersBank = new Bank("Winter's Bank");
 
-// Create a new account when the user loads the page
-//Note: this is a GLOBAL VARIABLE
+let george = new Customer("Curious George");
+george.deposit("new date", 250);
+//console.log(george.balance);
 
-let currentAccount = new Account();
 
 // UI Logic --------------------
 $(document).ready(function() {
-  debugger
+  //console.log('jQuery is working');
   $("form#register").submit(function(event) {
+    //console.log("form has been submitted");
     let firstName = $("input#firstName").val();
     let lastName = $("input#lastName").val();
-    let fullname = `${firstName} ${lastName}`;
+    let fullName = firstName + " " + lastName;
 
-    debugger
-    let openingDeposit = parseFloat(("input#openingDeposit").val());
-    debugger
+    let openingDeposit = parseFloat($("input#openingDeposit").val());
+    console.log(firstName);
+    console.log(lastName);
     console.log(fullName);
+    console.log(openingDeposit);
+
+    let newUser = new User(firstName, lastName, balance);
+    console.log(newUser);     
+
     event.preventDefault();
   });
 
-  $("form#deposit").submit(function(event) {
+  // $("form#deposit").submit(function(event) {
 
-    event.preventDefault;
-  });
+  //   event.preventDefault;
+  // });
 
 });
