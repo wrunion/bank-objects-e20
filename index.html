@@ -31,6 +31,7 @@
       <div class="sub header">An exercise in objects and prototypes</div>
     </h1>
 
+    <!-- Registration Form -->
       <div class="ui segment" id="register-div">
         <h3>Register a new account:</h5>
           <form id="register" class="ui form">
@@ -51,9 +52,11 @@
             <button class="ui basic pink button" type="submit">Register</button>
           </form>
         </div>
+
+       <!-- Deposit and Withdrawl Form  -->
       <div class="ui segment" id="deposit-div">
         <h3>Deposit or withdraw funds:</h3>
-          <form id="register" class="ui form">
+          <form id="deposit" class="ui form">
           <div class="three fields">
               <div class="field">
                 <label for="firstName">Deposit Amount</label>
@@ -61,11 +64,11 @@
               </div>
               <div class="field">
                 <label for="lastName">Withdrawal Amount</label>
-                <input type="text" id="lastName" value="Smith">
+                <input type="number" id="lastName" value="Smith">
               </div>
               <div class="field">
-                <label for="phoneNumber">Deposit Date</label>
-                <input type="text" id="phoneNumber" value="555-555-2211">
+                <label for="depositDate">Deposit Date</label>
+                <input type="date" id="depositDate">
               </div>
             </div>
             <button class="ui basic blue button" type="submit">Submit</button>
@@ -73,29 +76,14 @@
       </div>
 
       <div class="ui segment" id="balance-div">
-        <h5>Current Balance:</h5>
+        <h3>Current Balance:</h3>
+        <div id="balanceBox">
 
-      </div>
 
-      <h2 class="ui header blue">Add a Contact:</h2>
-      <form id="new-contact" class="ui form">
-        <div class="four fields">
-          <div class="field">
-            <label for="firstName">First Name</label>
-            <input type="text" id="firstName" value="Jane">
-          </div>
-          <div class="field">
-            <label for="lastName">Last Name</label>
-            <input type="text" id="lastName" value="Smith">
-          </div>
-          <div class="field">
-            <label for="phoneNumber">Phone number</label>
-            <input type="text" id="phoneNumber" value="555-555-2211">
-          </div>
         </div>
-          <button class="ui basic blue button" type="submit">Add</button>
-      </form>
 
+        </div>
+      </div>
     </div>
   </div>
 <body>
